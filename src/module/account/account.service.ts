@@ -21,7 +21,7 @@ export class AccountService {
 
   async create(data: CreateUserDTO) {
     return this.accountService
-      .send('createUser', data)
+      .send<{ token: string }, CreateUserDTO>('createUser', data)
       .toPromise()
       .catch((err) => {
         this.logger.error(err);
