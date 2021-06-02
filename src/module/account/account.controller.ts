@@ -1,13 +1,12 @@
-import { Controller, Post, Req } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AccountService } from './account.service';
-import { Request } from 'express';
-
+import { CreateUserDTO } from './dtos/CreateUser.dto';
 @Controller('account')
 export class AccountController {
   constructor(private readonly accountService: AccountService) {}
 
   @Post()
-  create(@Req() request: Request): string {
-    return this.accountService.create();
+  create(@Body() data: CreateUserDTO) {
+    return this.accountService.create(data);
   }
 }

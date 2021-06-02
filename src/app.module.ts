@@ -13,12 +13,14 @@ import { AccountService } from './module/account/account.service';
 import { LawyerService } from './module/lawyer/lawyer.service';
 import { QuestionService } from './module/question/question.service';
 import { CipherService } from './module/cipher/cipher.service';
+import { ClientsModule } from '@nestjs/microservices';
 
 import { AuthService } from './middleware/auth.service';
 import { AuthMiddleware } from './middleware/auth.middleware';
+import { AccountServiceConfig } from './config/microservices.config';
 
 @Module({
-  imports: [],
+  imports: [ClientsModule.register([AccountServiceConfig])],
   controllers: [
     AccountController,
     LawyerController,
