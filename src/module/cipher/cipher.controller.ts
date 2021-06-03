@@ -7,8 +7,7 @@ export class CipherController {
   constructor(private readonly cipherService: CipherService) {}
 
   @Post()
-  login(@Req() request: Request): string {
-    const { email, password } = request.body;
-    return this.cipherService.login();
+  login(@Req() request: Request){
+    return this.cipherService.login(request.body);
   }
 }

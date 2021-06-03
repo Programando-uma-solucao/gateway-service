@@ -18,14 +18,10 @@ export class CipherService {
     private readonly accountService: ClientProxy,
   ) {}
 
-  login() {
-    this.accountService
-      .send('login', 'data')
-      .subscribe(
-        (response) => console.log(response),
-        (error) => console.error(error.message),
-      );
-    return "test";
+  async login(req){
+    return this.accountService
+      .send('login', req)
+      .toPromise();
   }
 }
 
