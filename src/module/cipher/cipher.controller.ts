@@ -8,6 +8,7 @@ export class CipherController {
 
   @Post()
   login(@Req() request: Request): string {
+    const { email, password } = request.body;
     return this.cipherService.login();
   }
 }
