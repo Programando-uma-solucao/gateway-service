@@ -21,7 +21,14 @@ export class CipherService {
   async login(req){
     return this.accountService
       .send('login', req)
-      .toPromise();
+      .toPromise()
+      .catch((err)=>{
+        this.logger.error(err);
+        if (err.httpCode === 400) {
+          throw new BadRequestException(err.message);
+        }
+        throw new InternalServerErrorException(err.message);
+      });
   }
 }
 
