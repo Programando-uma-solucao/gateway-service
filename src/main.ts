@@ -9,6 +9,6 @@ import { TimeoutInterceptor } from './interceptors/timeout.interceptor';
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new TimeoutInterceptor());
   await app.listen(8080, () =>
-    console.log('gateway-service is listening on port 8081'),
+    console.log('gateway-service is listening on port 8080'),
   );
 })();
