@@ -4,6 +4,7 @@ import {
   Logger,
   BadRequestException,
   InternalServerErrorException,
+  NotFoundException,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 
@@ -24,9 +25,8 @@ export class CipherService {
       .toPromise()
       .catch((err) => {
         this.logger.error(err);
-        if (err.httpCode === 400) {
-          throw new BadRequestException(err.message);
-        }
+        if (err.httpCode === 400) throw new BadRequestException(err.message);
+        if (err.httpCode === 404) throw new NotFoundException(err.message);
         throw new InternalServerErrorException(err.message);
       });
   }
