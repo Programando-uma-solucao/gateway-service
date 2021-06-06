@@ -4,6 +4,7 @@ import {
   Logger,
   BadRequestException,
   InternalServerErrorException,
+  NotFoundException,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 
@@ -29,6 +30,24 @@ export class AccountService {
           throw new BadRequestException(err.message);
         }
         throw new InternalServerErrorException();
+      });
+  }
+
+  async getAccount(data: any) {
+    return await this.accountService
+      .send('getAccount', data)
+      .toPromise()
+      .catch((err) => {
+        if (err.httpCode === 404) throw new NotFoundException(err.message);
+      });
+  }
+
+  async recoverSecretQuestion(data: any) {
+    return await this.accountService
+      .send('recoverSecretQuestion', data)
+      .toPromise()
+      .catch((err) => {
+        if (err.httpCode === 404) throw new NotFoundException(err.message);
       });
   }
 }
