@@ -45,6 +45,9 @@ export class AccountService {
   async recoverSecretQuestion(data: any) {
     return await this.accountService
       .send('recoverSecretQuestion', data)
-      .toPromise();
+      .toPromise()
+      .catch((err) => {
+        if (err.httpCode === 404) throw new NotFoundException(err.message);
+      });
   }
 }
