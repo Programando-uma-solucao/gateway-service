@@ -34,10 +34,17 @@ export class AccountService {
   }
 
   async getAccount(data: any) {
-    return await this.accountService.send('getAccount', data)
-    .toPromise()
-    .catch((err) => {
-      if(err.httpCode === 404) throw new NotFoundException(err.message);
-    });
+    return await this.accountService
+      .send('getAccount', data)
+      .toPromise()
+      .catch((err) => {
+        if (err.httpCode === 404) throw new NotFoundException(err.message);
+      });
+  }
+
+  async recoverSecretQuestion(data: any) {
+    return await this.accountService
+      .send('recoverSecretQuestion', data)
+      .toPromise();
   }
 }

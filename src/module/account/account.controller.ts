@@ -1,6 +1,14 @@
-import { Body, Controller, Post, Get, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Get,
+  Query,
+  HttpCode,
+  Param,
+} from '@nestjs/common';
 import { AccountService } from './account.service';
-import { CreateUserDTO } from './dtos/CreateUser.dto';
+import { CreateUserDTO, RecoverSecretQuestionDTO } from './dtos';
 
 @Controller('account')
 export class AccountController {
@@ -14,5 +22,11 @@ export class AccountController {
   @Get()
   getAccount(@Query() query: string) {
     return this.accountService.getAccount(query);
+  }
+
+  @Get('/recover-secret-question/:email')
+  @HttpCode(200)
+  recoverSecretQuestion(@Param() param: RecoverSecretQuestionDTO) {
+    return this.accountService.recoverSecretQuestion(param);
   }
 }
