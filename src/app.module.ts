@@ -17,10 +17,15 @@ import { ClientsModule } from '@nestjs/microservices';
 
 import { AuthService } from './middleware/auth.service';
 import { AuthMiddleware } from './middleware/auth.middleware';
-import { AccountServiceConfig } from './config/microservices.config';
+import {
+  AccountServiceConfig,
+  QuestionServiceConfig,
+} from './config/microservices.config';
 
 @Module({
-  imports: [ClientsModule.register([AccountServiceConfig])],
+  imports: [
+    ClientsModule.register([AccountServiceConfig, QuestionServiceConfig]),
+  ],
   controllers: [
     AccountController,
     LawyerController,

@@ -1,13 +1,13 @@
-import { Controller, Post, Req } from '@nestjs/common';
+import { Controller, Header, Post } from '@nestjs/common';
+import { CreateQuestionDTO } from './dtos/CreateQuestion.dto';
 import { QuestionService } from './question.service';
-import { Request } from 'express';
 
 @Controller('question')
 export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
-
   @Post()
-  create(@Req() request: Request): string {
-    return this.questionService.create();
+  @Header('Authorization', 'Bearer ')
+  create(data: CreateQuestionDTO) {
+    return this.questionService.create(data);
   }
 }

@@ -9,4 +9,13 @@ const AccountServiceConfig: ClientProviderOptions = {
   },
 };
 
-export { AccountServiceConfig };
+const QuestionServiceConfig: ClientProviderOptions = {
+  name: 'QUESTION_SERVICE',
+  transport: Transport.TCP,
+  options: {
+    host: 'localhost',
+    port: 8084,
+  },
+};
+
+export { AccountServiceConfig, QuestionServiceConfig };
