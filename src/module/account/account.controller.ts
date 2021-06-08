@@ -29,4 +29,9 @@ export class AccountController {
   recoverSecretQuestion(@Param() param: RecoverSecretQuestionDTO) {
     return this.accountService.recoverSecretQuestion(param);
   }
+
+  @Post('/answer-secret-question')
+  answerSecretQuestion(@Body() data: any) {
+    return this.accountService.answerSecretQuestion(data);
+  }
 }

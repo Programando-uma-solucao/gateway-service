@@ -50,4 +50,14 @@ export class AccountService {
         if (err.httpCode === 404) throw new NotFoundException(err.message);
       });
   }
+
+  async answerSecretQuestion(data: any) {
+    return await this.accountService
+      .send('answerSecretQuestion', data)
+      .toPromise()
+      .catch((err) => {
+        if (err.httpCode === 400) throw new BadRequestException(err.message);
+        if (err.httpCode === 404) throw new NotFoundException(err.message);
+      });
+  }
 }
