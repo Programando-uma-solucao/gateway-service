@@ -6,6 +6,7 @@ import {
   Query,
   HttpCode,
   Param,
+  Put,
 } from '@nestjs/common';
 import { AccountService } from './account.service';
 import { CreateUserDTO, RecoverSecretQuestionDTO } from './dtos';
@@ -28,5 +29,16 @@ export class AccountController {
   @HttpCode(200)
   recoverSecretQuestion(@Param() param: RecoverSecretQuestionDTO) {
     return this.accountService.recoverSecretQuestion(param);
+  }
+
+  @Post('/answer-secret-question')
+  @HttpCode(200)
+  answerSecretQuestion(@Body() data: any) {
+    return this.accountService.answerSecretQuestion(data);
+  }
+
+  @Put('/change-password')
+  changePassword(@Body() data: any) {
+    return this.accountService.changePassword(data);
   }
 }
