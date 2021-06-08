@@ -1,13 +1,14 @@
-import { Controller, Post, Req } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { CipherService } from './cipher.service';
-import { Request } from 'express';
+import { LoginDTO } from './dtos/Login.dto';
 
 @Controller('login')
 export class CipherController {
   constructor(private readonly cipherService: CipherService) {}
 
   @Post()
-  login(@Req() request: Request): string {
-    return this.cipherService.login();
+  @HttpCode(200)
+  login(@Body() request: LoginDTO) {
+    return this.cipherService.login(request);
   }
 }

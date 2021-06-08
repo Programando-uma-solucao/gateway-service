@@ -20,11 +20,16 @@ import { AuthMiddleware } from './middleware/auth.middleware';
 import {
   AccountServiceConfig,
   QuestionServiceConfig,
+  CipherServiceConfig,
 } from './config/microservices.config';
 
 @Module({
   imports: [
-    ClientsModule.register([AccountServiceConfig, QuestionServiceConfig]),
+    ClientsModule.register([
+      AccountServiceConfig,
+      CipherServiceConfig,
+      QuestionServiceConfig,
+    ]),
   ],
   controllers: [
     AccountController,
