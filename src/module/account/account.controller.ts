@@ -32,6 +32,7 @@ export class AccountController {
   }
 
   @Post('/answer-secret-question')
+  @HttpCode(200)
   answerSecretQuestion(@Body() data: any) {
     return this.accountService.answerSecretQuestion(data);
   }
