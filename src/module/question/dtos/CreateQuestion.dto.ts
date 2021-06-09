@@ -11,6 +11,6 @@ export class CreateQuestionDTO {
 
   @IsString({ each: true })
   @IsArray()
-  @IsOptional()
+  @IsNotEmpty()
   tags: Array<string>;
 }

@@ -18,8 +18,9 @@ export class QuestionService {
   ) {}
 
   async create(data: CreateQuestionDTO) {
+    console.log('2222');
     return this.questionService
-      .send<any, CreateQuestionDTO>('createQuation', data)
+      .send('createQuestion', data)
       .toPromise()
       .catch((err) => {
         this.logger.error(err);
