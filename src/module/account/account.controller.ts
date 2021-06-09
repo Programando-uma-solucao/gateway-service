@@ -10,6 +10,8 @@ import {
 } from '@nestjs/common';
 import { AccountService } from './account.service';
 import { CreateUserDTO, RecoverSecretQuestionDTO } from './dtos';
+import { AnswerSecretQuestionDTO } from './dtos/AnswerSecretQuestion.dto';
+import { ChangePasswordDTO } from './dtos/ChangePassword.dto';
 
 @Controller('account')
 export class AccountController {
@@ -33,12 +35,12 @@ export class AccountController {
 
   @Post('/answer-secret-question')
   @HttpCode(200)
-  answerSecretQuestion(@Body() data: any) {
+  answerSecretQuestion(@Body() data: AnswerSecretQuestionDTO) {
     return this.accountService.answerSecretQuestion(data);
   }
 
   @Put('/change-password')
-  changePassword(@Body() data: any) {
+  changePassword(@Body() data: ChangePasswordDTO) {
     return this.accountService.changePassword(data);
   }
 }

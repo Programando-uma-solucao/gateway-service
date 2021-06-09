@@ -11,6 +11,8 @@ import { ClientProxy } from '@nestjs/microservices';
 
 import { CreateUserDTO } from './dtos/CreateUser.dto';
 import { AccountServiceConfig } from '../../config/microservices.config';
+import { AnswerSecretQuestionDTO } from './dtos/AnswerSecretQuestion.dto';
+import { ChangePasswordDTO } from './dtos/ChangePassword.dto';
 
 @Injectable()
 export class AccountService {
@@ -52,7 +54,7 @@ export class AccountService {
       });
   }
 
-  async answerSecretQuestion(data: any) {
+  async answerSecretQuestion(data: AnswerSecretQuestionDTO) {
     return await this.accountService
       .send('answerSecretQuestion', data)
       .toPromise()
@@ -62,7 +64,7 @@ export class AccountService {
       });
   }
 
-  async changePassword(data: any) {
+  async changePassword(data: ChangePasswordDTO) {
     return await this.accountService
       .send('changePassword', data)
       .toPromise()
