@@ -9,6 +9,15 @@ const AccountServiceConfig: ClientProviderOptions = {
   },
 };
 
+const QuestionServiceConfig: ClientProviderOptions = {
+  name: 'QUESTION_SERVICE',
+  transport: Transport.TCP,
+  options: {
+    host: 'localhost',
+    port: 8084,
+  },
+};
+
 const CipherServiceConfig: ClientProviderOptions = {
   name: 'CIPHER_SERVICE',
   transport: Transport.TCP,
@@ -18,4 +27,4 @@ const CipherServiceConfig: ClientProviderOptions = {
   },
 };
 
-export { AccountServiceConfig, CipherServiceConfig };
+export { AccountServiceConfig, CipherServiceConfig, QuestionServiceConfig };
