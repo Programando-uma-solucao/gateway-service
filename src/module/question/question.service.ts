@@ -18,7 +18,6 @@ export class QuestionService {
   ) {}
 
   async create(data: CreateQuestionDTO) {
-    console.log('2222');
     return this.questionService
       .send('createQuestion', data)
       .toPromise()
