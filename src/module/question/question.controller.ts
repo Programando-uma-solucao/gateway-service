@@ -1,4 +1,10 @@
-import { Body, Controller, Header, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Request,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { CreateQuestionDTO } from './dtos/CreateQuestion.dto';
 import { QuestionService } from './question.service';
 
@@ -6,9 +12,12 @@ import { QuestionService } from './question.service';
 export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
   @Post()
-  @Header('Authorization', 'Bearer ')
-  create(@Body() data: CreateQuestionDTO) {
-    console.log(data);
+  create(@Request() req, @Body() data: CreateQuestionDTO) {
+    if (req.user.id !== data.accountId)
+      throw new UnauthorizedException(
+        'You can not create a question for other user',
+      );
+
     return this.questionService.create(data);
   }
 }
