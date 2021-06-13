@@ -8,8 +8,4 @@ export class CreateAnswerDTO {
   @IsString()
   @IsNotEmpty()
   questionId: string;
-
-  @IsString()
-  @IsNotEmpty()
-  accountId: string;
 }
