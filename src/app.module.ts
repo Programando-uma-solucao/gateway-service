@@ -22,6 +22,8 @@ import {
   QuestionServiceConfig,
   CipherServiceConfig,
 } from './config/microservices.config';
+import { AnswerController } from './module/answer/answer.controller';
+import { AnswerService } from './module/answer/answer.service';
 
 @Module({
   imports: [
@@ -36,6 +38,7 @@ import {
     LawyerController,
     QuestionController,
     CipherController,
+    AnswerController
   ],
   providers: [
     AccountService,
@@ -43,6 +46,7 @@ import {
     QuestionService,
     AuthService,
     CipherService,
+    AnswerService
   ],
 })
 export class AppModule implements NestModule {
@@ -53,6 +57,6 @@ export class AppModule implements NestModule {
         { path: 'account', method: RequestMethod.POST },
         { path: 'login', method: RequestMethod.POST },
       )
-      .forRoutes(AccountController, LawyerController, QuestionController);
+      .forRoutes(AccountController, LawyerController, QuestionController, AnswerController);
   }
 }
