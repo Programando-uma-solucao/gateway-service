@@ -19,10 +19,9 @@ export class AuthMiddleware implements NestMiddleware {
     }
 
     const tokenPayload = await this.authService.auth(authorization);
-    console.log(tokenPayload);
 
     if (tokenPayload) {
-      req.user = { id: tokenPayload.sub };
+      req.user = tokenPayload;
       next();
     } else {
       throw new UnauthorizedException('User not allowed to do this operation');
