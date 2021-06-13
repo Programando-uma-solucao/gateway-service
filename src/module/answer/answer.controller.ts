@@ -18,10 +18,10 @@ export class AnswerController {
         'You can not create a Answer for other user',
       );
     
-    /*if (req.user.role !== "LAWYER")
+    if (req.user.role !== "LAWYER")
       throw new UnauthorizedException(
         'You can not create a Answer',
-      );*/
+      );
 
     return this.answerService.create(data);
   }
