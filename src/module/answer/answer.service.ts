@@ -31,13 +31,6 @@ export class AnswerService {
   ) {}
 
   async create(data: CreateAnswerDTO, lawyerId: string) {
-    const account: Account = await this.accountService.getAccount({
-      _id: lawyerId,
-    });
-
-    if (account.role !== 'LAWYER') {
-      throw new UnauthorizedException('Only lawyers users can create a answer');
-    }
 
     this.questionService
       .emit('createAnswer', { ...data, lawyerId })

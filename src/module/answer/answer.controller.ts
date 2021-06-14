@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Query, Request } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Query,
+  Request,
+  UnauthorizedException,
+} from '@nestjs/common';
 
 import { CreateAnswerDTO } from './dtos/CreateAnswer.dto';
 import { AnswerService } from './answer.service';
@@ -9,6 +17,9 @@ export class AnswerController {
 
   @Post()
   create(@Request() req, @Body() data: CreateAnswerDTO) {
+    if (req.user.role !== 'LAWYER')
+      throw new UnauthorizedException('You can not create a Answer');
+
     return this.answerService.create(data, req.user.id);
   }
 
