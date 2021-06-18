@@ -5,12 +5,10 @@ import {
   RequestMethod,
 } from '@nestjs/common';
 import { AccountController } from './module/account/account.controller';
-import { LawyerController } from './module/lawyer/lawyer.controller';
 import { QuestionController } from './module/question/question.controller';
 import { CipherController } from './module/cipher/cipher.controller';
 
 import { AccountService } from './module/account/account.service';
-import { LawyerService } from './module/lawyer/lawyer.service';
 import { QuestionService } from './module/question/question.service';
 import { CipherService } from './module/cipher/cipher.service';
 import { ClientsModule } from '@nestjs/microservices';
@@ -35,14 +33,12 @@ import { AnswerService } from './module/answer/answer.service';
   ],
   controllers: [
     AccountController,
-    LawyerController,
     QuestionController,
     CipherController,
     AnswerController,
   ],
   providers: [
     AccountService,
-    LawyerService,
     QuestionService,
     AuthService,
     CipherService,
@@ -57,11 +53,6 @@ export class AppModule implements NestModule {
         { path: 'account', method: RequestMethod.POST },
         { path: 'login', method: RequestMethod.POST },
       )
-      .forRoutes(
-        AccountController,
-        LawyerController,
-        QuestionController,
-        AnswerController,
-      );
+      .forRoutes(AccountController, QuestionController, AnswerController);
   }
 }
