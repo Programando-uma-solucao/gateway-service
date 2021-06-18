@@ -56,5 +56,5 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd ~/app/gateway-service
-            npm run install
+            npm install
             pm2 restart gateway_service
