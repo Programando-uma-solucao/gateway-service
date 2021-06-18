@@ -38,7 +38,7 @@ import { AnswerService } from './module/answer/answer.service';
     LawyerController,
     QuestionController,
     CipherController,
-    AnswerController
+    AnswerController,
   ],
   providers: [
     AccountService,
@@ -46,7 +46,7 @@ import { AnswerService } from './module/answer/answer.service';
     QuestionService,
     AuthService,
     CipherService,
-    AnswerService
+    AnswerService,
   ],
 })
 export class AppModule implements NestModule {
@@ -57,6 +57,11 @@ export class AppModule implements NestModule {
         { path: 'account', method: RequestMethod.POST },
         { path: 'login', method: RequestMethod.POST },
       )
-      .forRoutes(AccountController, LawyerController, QuestionController, AnswerController);
+      .forRoutes(
+        AccountController,
+        LawyerController,
+        QuestionController,
+        AnswerController,
+      );
   }
 }

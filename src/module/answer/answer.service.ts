@@ -31,7 +31,6 @@ export class AnswerService {
   ) {}
 
   async create(data: CreateAnswerDTO, lawyerId: string) {
-
     this.questionService
       .emit('createAnswer', { ...data, lawyerId })
       .toPromise()
