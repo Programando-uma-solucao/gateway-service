@@ -22,9 +22,14 @@ export class AccountController {
     return this.accountService.create(data);
   }
 
-  @Get()
-  getAccount(@Query() query: string) {
-    return this.accountService.getAccount(query);
+  @Get('/:email')
+  getAccountByEmail(@Param('email') email: string) {
+    return this.accountService.getAccountByEmail(email);
+  }
+
+  @Get('/:id')
+  getAccountById(@Param('id') id: string) {
+    return this.accountService.getAccountById(id);
   }
 
   @Get('/recover-secret-question/:email')

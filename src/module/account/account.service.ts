@@ -36,9 +36,18 @@ export class AccountService {
       });
   }
 
-  async getAccount(data: any) {
+  async getAccountByEmail(email: string) {
     return await this.accountService
-      .send('getAccount', data)
+      .send('getAccountByEmail', email)
+      .toPromise()
+      .catch((err) => {
+        if (err.httpCode === 404) throw new NotFoundException(err.message);
+      });
+  }
+
+  async getAccountById(id: string) {
+    return await this.accountService
+      .send('getAccountById', id)
       .toPromise()
       .catch((err) => {
         if (err.httpCode === 404) throw new NotFoundException(err.message);
